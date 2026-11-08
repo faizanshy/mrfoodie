@@ -71,11 +71,10 @@ $("#orderForm").addEventListener("submit",async e=>{
   try{
     const response=await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(ORDER_EMAIL)}`,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)});
     const result=await response.json();
-    if(!response.ok||result.success===false)throw new Error(result.message||"Order could not be sent.");
+    if (!response.ok || String(result.success) !== "true") {throw new Error(result.message || "Email service rejected the order.");}throw new Error(result.message||"Order could not be sent.");
     msg.className="form-message success";msg.textContent="Order submitted! Thank you — Mr Foodie will contact you to confirm.";
     cart={};renderCart();e.currentTarget.reset();btn.textContent="Order sent ✓";
     setTimeout(()=>{$("#checkoutModal").classList.remove("show");btn.disabled=false;btn.innerHTML='Done — place my order <span>✓</span>';},2400);
-  }catch(err){msg.className="form-message error";msg.textContent="Could not send the order. Please check your internet and try again.";btn.disabled=false;btn.innerHTML='Done — place my order <span>✓</span>';}
-});
-$("#year").textContent=new Date().getFullYear();
+  }catch(err) {msg.className = "form-message error";msg.textContent = "Error: " + err.message;btn.disabled = false;btn.innerHTML = 'Done — place my order <span>✓</span>';
+}
 renderProducts();renderCart();
