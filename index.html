@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#151515">
+  <meta name="description" content="Mr Foodie — Big flavour. Happy cravings. Order burgers, pizza, wraps and more.">
+  <title>Mr Foodie — Big Flavour. Happy Cravings.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top-strip">FRESHLY MADE • BIG FLAVOUR • FAST DELIVERY</div>
+  <header class="header">
+    <a class="brand" href="#home" aria-label="Mr Foodie home"><span class="brand-mark">MF</span><span>Mr <b>Foodie</b><small>GOOD FOOD. GOOD MOOD.</small></span></a>
+    <nav><a href="#home">Home</a><a href="#menu">Our Menu</a><a href="#why-us">Why Us</a></nav>
+    <button class="cart-button" id="openCart" aria-label="Open shopping cart">🛒 <span>Cart</span><b id="cartCount">0</b></button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> YOUR NEW FAVOURITE FOOD SPOT</div>
+        <h1>Big flavour.<br><em>Happy cravings.</em></h1>
+        <p>Good food, great mood. From juicy burgers to cheesy bites, your next favourite meal is just a few clicks away.</p>
+        <div class="hero-actions"><a class="primary-btn" href="#menu">Explore the menu <span>↗</span></a><div class="mini-proof"><span>★★★★★</span><small>Made fresh, served with love</small></div></div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-food">🍔</div><div class="floating-tag tag-top">100% CRAVE-WORTHY</div><div class="floating-tag tag-bottom">FRESH • HOT • DELICIOUS</div>
+        <span class="spark spark-one">✦</span><span class="spark spark-two">✳</span>
+      </div>
+      <div class="hero-bottom"><span>01 / FRESH FOOD</span><span>SCROLL TO GET HUNGRY ↓</span></div>
+    </section>
+
+    <section class="menu-section section-wrap" id="menu">
+      <div class="section-heading"><div><div class="eyebrow"><span></span> MADE TO MAKE YOU SMILE</div><h2>Find your <em>flavour.</em></h2></div><p>Pick your favourites, add them to your cart<br>and let the good times roll.</p></div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-category="All">All items</button>
+        <button class="filter" data-category="Burgers">Burgers</button>
+        <button class="filter" data-category="Pizza">Pizza</button>
+        <button class="filter" data-category="Sides">Sides</button>
+        <button class="filter" data-category="Drinks">Drinks</button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="promo" id="why-us"><div class="promo-icon">🍟</div><div><div class="eyebrow">THE MR FOODIE PROMISE</div><h2>Made fresh. <em>Made for you.</em></h2><p>Big portions, feel-good flavours and food that hits the spot. Every single time.</p></div><a href="#menu" class="promo-link">ORDER YOUR FAVOURITE ↗</a></section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#home"><span class="brand-mark">MF</span><span>Mr <b>Foodie</b><small>GOOD FOOD. GOOD MOOD.</small></span></a><p>© <span id="year"></span> Mr Foodie. Made with flavour.</p><a href="#home">BACK TO TOP ↑</a></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="drawer-head"><div><div class="eyebrow">YOUR ORDER</div><h3>Shopping cart</h3></div><button class="icon-btn" id="closeCart" aria-label="Close cart">✕</button></div>
+    <div class="cart-items" id="cartItems"><div class="empty-cart">Your cart is looking hungry.<span>🍔</span><small>Add something delicious from the menu.</small></div></div>
+    <div class="cart-footer"><div class="total-line"><span>Subtotal</span><strong id="cartTotal">Rs. 0</strong></div><p>Delivery charges, if any, can be confirmed with you.</p><button class="primary-btn full-btn" id="checkoutBtn">Continue to checkout <span>→</span></button></div>
+  </aside>
+
+  <div class="modal-wrap" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <div class="checkout-card">
+      <div class="drawer-head"><div><div class="eyebrow">ALMOST THERE</div><h3 id="checkoutTitle">Your details</h3></div><button class="icon-btn" id="closeCheckout" aria-label="Close checkout">✕</button></div>
+      <p class="modal-intro">Enter your delivery details. We'll send your order to Mr Foodie's inbox.</p>
+      <form id="orderForm">
+        <div class="form-grid">
+          <label>Full name<input name="customer_name" required autocomplete="name" placeholder="Your name"></label>
+          <label>Phone number<input name="phone" type="tel" required autocomplete="tel" placeholder="03XX XXXXXXX"></label>
+          <label class="wide">Delivery address<textarea name="address" required rows="2" placeholder="House, street, area and nearby landmark"></textarea></label>
+          <label>City<input name="city" required placeholder="Your city"></label>
+          <label>Payment method<select name="payment"><option>Cash on Delivery</option><option>Other (confirm by phone)</option></select></label>
+          <label class="wide">Order notes (optional)<textarea name="notes" rows="2" placeholder="Any special instructions?"></textarea></label>
+        </div>
+        <div class="checkout-total"><span>Order total</span><strong id="checkoutTotal">Rs. 0</strong></div>
+        <button class="primary-btn full-btn" id="submitOrder" type="submit">Done — place my order <span>✓</span></button>
+        <p class="privacy-note">Your details are used only to process this order.</p>
+        <div class="form-message" id="formMessage" role="status"></div>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
