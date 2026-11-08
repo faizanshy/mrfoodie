@@ -5,7 +5,7 @@
      and click its activation link. Later orders will be delivered to that inbox.
   3) GitHub Pages is static hosting; this uses FormSubmit so no private API key/backend is needed.
 */
-const ORDER_EMAIL = "faizanshy7@gmail.com";
+const ORDER_EMAIL = "YOUR_GMAIL_ADDRESS@gmail.com";
 
 const products = [
   {id:1,name:"Classic Smash Burger",category:"Burgers",price:650,emoji:"🍔",desc:"Juicy smashed patty, cheese and our signature sauce."},
@@ -52,7 +52,7 @@ $("#orderForm").addEventListener("submit",async e=>{
   e.preventDefault();
   const msg=$("#formMessage"),btn=$("#submitOrder");
   if(!count())return;
-  if(ORDER_EMAIL==="YOUR_GMAIL_ADDRESS@gmail.com"||!ORDER_EMAIL.includes("@")){msg.className="form-message error";msg.textContent="Setup needed: add your Gmail address in script.js (ORDER_EMAIL), then upload again.";return;}
+  if(ORDER_EMAIL==="faizanshy7@gmail.com"||!ORDER_EMAIL.includes("@")){msg.className="form-message error";msg.textContent="Setup needed: add your Gmail address in script.js (ORDER_EMAIL), then upload again.";return;}
   const data=new FormData(e.currentTarget);
   const orderLines=Object.entries(cart).map(([id,qty])=>{const p=products.find(x=>x.id===Number(id));return `${p.name} x ${qty} — ${money(p.price*qty)}`;}).join("\n");
   const payload={
@@ -71,10 +71,13 @@ $("#orderForm").addEventListener("submit",async e=>{
   try{
     const response=await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(ORDER_EMAIL)}`,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)});
     const result=await response.json();
-    if (!response.ok || String(result.success) !== "true") {throw new Error(result.message || "Email service rejected the order.");}throw new Error(result.message||"Order could not be sent.");
+    if (!response.ok || String(result.success) !== "true") {
+  throw new Error(result.message || "Email service rejected the order.");
+}
     msg.className="form-message success";msg.textContent="Order submitted! Thank you — Mr Foodie will contact you to confirm.";
     cart={};renderCart();e.currentTarget.reset();btn.textContent="Order sent ✓";
     setTimeout(()=>{$("#checkoutModal").classList.remove("show");btn.disabled=false;btn.innerHTML='Done — place my order <span>✓</span>';},2400);
-  }catch(err) {msg.className = "form-message error";msg.textContent = "Error: " + err.message;btn.disabled = false;btn.innerHTML = 'Done — place my order <span>✓</span>';
-}
+  }catch(err){msg.className = "form-message error";msg.textContent = "Error: " + err.message;btn.disabled = false;btn.innerHTML = 'Done — place my order <span>✓</span>';
+}});
+$("#year").textContent=new Date().getFullYear();
 renderProducts();renderCart();
