@@ -5,7 +5,7 @@
      and click its activation link. Later orders will be delivered to that inbox.
   3) GitHub Pages is static hosting; this uses FormSubmit so no private API key/backend is needed.
 */
-const ORDER_EMAIL = "YOUR_GMAIL_ADDRESS@gmail.com";
+const ORDER_EMAIL = "faizanshy7@gmail.com";
 
 const products = [
   {id:1,name:"Classic Smash Burger",category:"Burgers",price:650,emoji:"🍔",desc:"Juicy smashed patty, cheese and our signature sauce."},
